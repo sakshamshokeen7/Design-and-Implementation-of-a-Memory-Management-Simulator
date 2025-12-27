@@ -2,12 +2,14 @@
 #include <string>
 #include "buddy/buddy.h"
 #include "allocator/allocator.h"
+#include "cache/cache.h"
 using namespace std;
 
 int main(){
     cout<<"Memory Simulator Started\n";
     MemoryAllocator* allocator=nullptr;
     BuddyAllocator* buddyAllocator=nullptr;
+    CacheSystem* cache=nullptr;
     string command;
     while(true){
         cout<<" > ";
@@ -106,6 +108,32 @@ int main(){
             }
             else{
                 cout<<"nothing to dump\n";
+            }
+        }
+        else if(command=="cache_init"){
+            int l1_size,l2_size;
+            cin>>l1_size>>l2_size;
+            cin.ignore();
+            delete cache;
+            cache=new CacheSystem(l1_size,l2_size);
+            cout << "Cache initialized (L1=" << l1_size << ", L2=" << l2_size << ")\n";
+        }
+        else if(command=="cache_access"){
+            int address;
+            cin>>address;
+            cin.ignore();
+            if(!cache){
+                cout<<"initialize cache first"<<endl;
+                continue;
+            }
+            cache->access(address);
+        }
+        else if(command=="cache_stats"){
+            if(cache){
+                cache->stats();
+            }
+            else{
+                cout<<"nothing to show\n";
             }
         }
         else if(command=="exit"){
