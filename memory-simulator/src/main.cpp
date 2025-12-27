@@ -3,6 +3,7 @@
 #include "buddy/buddy.h"
 #include "allocator/allocator.h"
 #include "cache/cache.h"
+#include "virtual_memory/vm.h"
 using namespace std;
 
 int main(){
@@ -10,6 +11,7 @@ int main(){
     MemoryAllocator* allocator=nullptr;
     BuddyAllocator* buddyAllocator=nullptr;
     CacheSystem* cache=nullptr;
+    VirtualMemory* vm = nullptr;
     string command;
     while(true){
         cout<<" > ";
@@ -131,6 +133,31 @@ int main(){
         else if(command=="cache_stats"){
             if(cache){
                 cache->stats();
+            }
+            else{
+                cout<<"nothing to show\n";
+            }
+        }
+        else if (command == "vm_init") {
+                int pages, frames, pageSize;
+                cin >> pages >> frames >> pageSize;
+                delete vm;
+                vm = new VirtualMemory(pages, frames, pageSize);
+                cout << "Virtual memory initialized\n";
+        }
+        else if(command=="vm_access"){
+            int address;
+            cin>>address;
+            cin.ignore();
+            if(!vm){
+                cout<<"initialize virtual memory first"<<endl;
+                continue;
+            }
+            vm->access(address);
+        }
+        else if(command=="vm_stats"){
+            if(vm){
+                vm->stats();
             }
             else{
                 cout<<"nothing to show\n";
