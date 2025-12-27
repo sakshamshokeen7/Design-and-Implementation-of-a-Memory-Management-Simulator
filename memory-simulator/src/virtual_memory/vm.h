@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <queue>
+using namespace std;
 
 struct PageTableEntry {
     bool valid;
@@ -15,9 +16,9 @@ private:
     int num_pages;
     int num_frames;
 
-    std::vector<PageTableEntry> page_table;
-    std::queue<int> fifo;
-    std::vector<bool> frame_used;
+    vector<PageTableEntry> page_table;
+    queue<int> fifo;
+    vector<bool> frame_used;
 
     int page_faults;
     int accesses;
