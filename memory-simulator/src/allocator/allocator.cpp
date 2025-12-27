@@ -44,29 +44,39 @@ int MemoryAllocator::findBlock(int size, Allocator_type allocator_type){
     return index;
 }
 
-void MemoryAllocator::mallocMem(int size){
+void MemoryAllocator::mallocMem(int size) {
     total_requests++;
-    int idx=findBlock(size,allocator_type);
-    if(idx==-1)
-    {
-        cout<<"Allocation failed for size"<<size<<endl;
+
+    int idx = findBlock(size, allocator_type);
+    if (idx == -1) {
+        cout << "Allocation failed for size " << size << endl;
         return;
     }
     successful_allocs++;
-    Block &b=blocks[idx];
-    if(b.size>size){
-        blocks.insert(blocks.begin()+idx+1,{b.start+size,b.size-size,0,true,-1});
+    int start = blocks[idx].start;
+    int oldSize = blocks[idx].size;
+    blocks[idx].size = size;
+    blocks[idx].requested = size;
+    blocks[idx].free = false;
+    blocks[idx].id = next_id++;
+    if (oldSize > size) {
+        Block newBlock;
+        newBlock.start = start + size;
+        newBlock.size = oldSize - size;
+        newBlock.requested = 0;
+        newBlock.free = true;
+        newBlock.id = -1;
+        blocks.insert(blocks.begin() + idx + 1, newBlock);
     }
-    b.size=size;
-    b.requested=size;
-    b.free=false;
-    b.id=next_id++;
-    cout<<"Allocated block id "<<b.id<<"at address=0X"<<hex<<b.start<<dec<<" of size "<<b.size<<endl;
+    cout << "Allocated block id " << blocks[idx].id
+         << " at address=0x" << hex << blocks[idx].start
+         << dec << " of size " << size << endl;
 }
+
 
 void MemoryAllocator::freeMem(int id){
     for(auto &b:blocks){
-        if(b.id==id){
+        if(!b.free && b.id==id){
             b.free=true;
             b.id=-1;
             b.requested=0;
@@ -89,17 +99,19 @@ void MemoryAllocator::mergeFreeBlocks(){
 }
 
 void MemoryAllocator::dump(){
+    cout<<dec;
     for(auto &b:blocks){
         cout<<"[0X"<<hex<<b.start<<"-0X"<<b.start+b.size-1<<"] ";
         if(b.free){
             cout<<"Free"<<endl;
         }
         else{
-            cout<<"USED id="<<dec<<b.id<<")\n";
+            cout<<"USED ( id="<<dec<<b.id<<")\n";
         }
     }
 }
 void MemoryAllocator::stats(){
+    cout<<dec;
     int used=0,freemem=0,internal_frag=0,largest_free=0;
     for(auto &b:blocks){
         if(b.free){
@@ -111,7 +123,10 @@ void MemoryAllocator::stats(){
             internal_frag+=b.size-b.requested;
         }
     }
-    double external_frag=(freemem>0)?(100.0*(freemem-largest_free / freemem)):0.0;
+    double external_frag =
+    (freemem > 0)
+        ? 100.0 * (double)(freemem - largest_free) / freemem
+        : 0.0;
     double utilization=100.0*used/total_memory;
     double success_rate=100.0*successful_allocs/total_requests;
     cout<<"\n--- Memory Statistics ---\n";
@@ -122,5 +137,8 @@ void MemoryAllocator::stats(){
     cout<<"External fragmentation: "<<fixed<<setprecision(2)<<external_frag<<" %\n";
     cout<<"Memory utilization: "<<fixed<<setprecision(2)<<utilization<<" %\n";
     cout<<"Allocation success rate: "<<fixed<<setprecision(2)<<success_rate<<" %\n";
+}
+void MemoryAllocator::setallocator(Allocator_type type){
+    allocator_type=type;
 }
 

@@ -1,6 +1,7 @@
 #include "buddy.h"
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 using namespace std;
 
 BuddyAllocator::BuddyAllocator(int size){
