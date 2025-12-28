@@ -25,7 +25,7 @@ private:
 
 public:
     VirtualMemory(int pages, int frames, int pageSize);
-
+    int translate(int virtual_address, bool &pageFault);
     void access(int virtual_address);
     void stats();
 };

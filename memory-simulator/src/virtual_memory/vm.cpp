@@ -70,3 +70,45 @@ void VirtualMemory::stats() {
          << (accesses ? 100.0 * page_faults / accesses : 0.0)
          << " %\n";
 }
+
+int VirtualMemory::translate(int virtual_address, bool &pageFault) {
+    accesses++;
+
+    int page = virtual_address / page_size;
+    int offset = virtual_address % page_size;
+
+    if (page < 0 || page >= num_pages) {
+        pageFault = false;
+        return -1;
+    }
+
+    if (page_table[page].valid) {
+        pageFault = false;
+        return page_table[page].frame * page_size + offset;
+    }
+
+    pageFault = true;
+    page_faults++;
+
+    int frame = -1;
+    for (int i = 0; i < num_frames; i++) {
+        if (!frame_used[i]) {
+            frame = i;
+            break;
+        }
+    }
+
+    if (frame == -1) {
+        int victim = fifo.front();
+        fifo.pop();
+        frame = page_table[victim].frame;
+        page_table[victim].valid = false;
+    }
+
+    page_table[page].valid = true;
+    page_table[page].frame = frame;
+    frame_used[frame] = true;
+    fifo.push(page);
+
+    return frame * page_size + offset;
+}

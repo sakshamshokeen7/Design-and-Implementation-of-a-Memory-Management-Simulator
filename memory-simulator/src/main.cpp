@@ -162,6 +162,26 @@ int main(){
             else{
                 cout<<"nothing to show\n";
             }
+        } 
+        else if (command=="access"){
+            int vadrr;
+            cin>>vadrr;
+            if(!vm || !cache || !allocator){
+                cout<<"initialize all components first (memory, cache, virtual memory)"<<endl;
+                continue;
+            }
+            bool pageFault;
+            int p_addr=vm->translate(vadrr,pageFault);
+            if(p_addr==-1){
+                cout<<"Invalid virtual address"<<endl;
+                continue;
+            }
+            cout<<"VADDR "<<vadrr<<" -> PADDR "<<p_addr<<endl;
+            if(pageFault){
+                cout<<"Handling page fault..."<<endl;
+            }
+            cache->access(p_addr);
+            cout<<"physical memory accessed\n";
         }
         else if(command=="exit"){
             cout<<"Exiting Memory Simulator\n";
