@@ -10,6 +10,10 @@ The simulator emphasizes **systems-level design**, **algorithmic correctness**, 
 
 ---
 
+
+https://github.com/user-attachments/assets/903c58f2-a98f-4862-85ec-87c65589147f
+
+
 ## 📌 Features Overview
 
 ### 1. Physical Memory Allocation
