@@ -67,27 +67,33 @@ The simulator emphasizes **systems-level design**, **algorithmic correctness**, 
 ### Memory Allocation
 
 init memory <size>
+```text
 set <firstfit | bestfit | worstfit>
 malloc <size>
 free <block_id>
 dump memory
 stats
+```
 
 ### Buddy Allocator
+```text
 buddy_malloc <size>
 buddy_free <address> <size>
 buddy_dump
+```
 
 ### Cache
+```text
 cache_init <l1_size> <l2_size>
 cache_access <address>
 cache_stats
-
+```
 ### Virtual Memory
+```text
 vm_init <pages> <frames> <page_size>
 vm_access <virtual_address>
 vm_stats
-
+```
 ### Integrated Access
 access <virtual_address>
 ---
@@ -108,6 +114,7 @@ Commands
 ---
 
 ### 📁 Project Structure
+``` text
 memory-simulator/
 ├── src/
 │   ├── allocator/
@@ -133,6 +140,7 @@ memory-simulator/
 │
 ├── Makefile
 └── README.md
+```
 
 ---
 ### 🎯 Learning Outcomes
