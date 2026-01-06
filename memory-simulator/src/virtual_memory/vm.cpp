@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../include/virtual_memory/vm.h"
 #include <iostream>
 
 using namespace std;

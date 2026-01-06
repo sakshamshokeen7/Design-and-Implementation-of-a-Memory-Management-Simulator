@@ -1,0 +1,25 @@
+#cache test case
+# Initialize cache
+# Arguments:
+# levels = 2
+# lines per level = 4
+cache_init
+2 4
+
+
+# Access memory addresses
+cache_access
+10
+cache_access
+20
+cache_access
+10
+cache_access
+30
+cache_access
+40
+cache_access
+10
+
+# Display cache statistics
+cache_stats

@@ -1,0 +1,33 @@
+# Buddy Allocator Test
+# Initialize memory (also initializes buddy allocator)
+init
+memory
+1024
+
+# Allocate blocks using buddy system
+buddy_malloc
+128
+
+buddy_malloc
+256
+
+buddy_malloc
+64
+
+# Dump memory layout after allocations
+buddy_dump
+
+# Free the 256-byte block
+# (address must match output from buddy_malloc)
+buddy_free
+256 256
+
+# Dump memory to observe buddy merge behavior
+buddy_dump
+
+# Allocate again to test reuse
+buddy_malloc
+128
+
+# Final memory dump
+buddy_dump

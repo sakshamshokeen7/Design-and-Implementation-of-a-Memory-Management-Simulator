@@ -1,4 +1,4 @@
-#include "buddy.h"
+#include "../include/buddy/buddy.h"
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -17,7 +17,7 @@ int BuddyAllocator::buddy_of(int address,int size){
 }
 int BuddyAllocator::allocate(int size){
     int req=next_power_of_two(size);
-    for(int s=req;s<max_size;s*=2){
+    for(int s=req;s<=max_size;s*=2){
         if(!freeLists[s].empty()){
             int address=freeLists[s].back();
             freeLists[s].pop_back();

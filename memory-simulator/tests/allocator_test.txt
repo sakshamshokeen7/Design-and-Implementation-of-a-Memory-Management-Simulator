@@ -1,0 +1,21 @@
+# Allocator Test Case
+# Initializing memory
+init
+memory
+1024
+
+# Allocate two blocks
+malloc
+100
+malloc
+200
+
+# Free first block
+free
+1
+
+# Dump memory layout
+dump
+
+# Display statistics
+stats

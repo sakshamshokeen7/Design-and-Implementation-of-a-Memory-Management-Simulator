@@ -14,7 +14,7 @@ class BuddyAllocator {
     public:
     BuddyAllocator(int size);
     int allocate(int size);
-    void freeBlock(int adderess, int size);
+    void freeBlock(int address, int size);
     void dump();
 };
 
