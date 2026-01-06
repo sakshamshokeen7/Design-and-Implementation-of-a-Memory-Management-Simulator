@@ -90,13 +90,15 @@ vm_stats
 
 ### Integrated Access
 access <virtual_address>
-
+-----
 
 🛠 Build Instructions (Windows / MinGW)
 Requirements
 
 1) MinGW (g++)
 2) mingw32-make
+
+-----
 
 📁 Project Structure
 memory-simulator/
