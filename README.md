@@ -65,9 +65,8 @@ The simulator emphasizes **systems-level design**, **algorithmic correctness**, 
 ##  Simulator Commands
 
 ### Memory Allocation
-
-init memory <size>
 ```text
+init memory <size>
 set <firstfit | bestfit | worstfit>
 malloc <size>
 free <block_id>
@@ -95,8 +94,10 @@ vm_access <virtual_address>
 vm_stats
 ```
 ### Integrated Access
+``` text
 access <virtual_address>
 ---
+```
 
 
 ### 🛠 Build Instructions (Windows / MinGW)
@@ -106,11 +107,11 @@ Requirements
 2) mingw32-make
 
 Commands
-
+``` text
 1)cd file
 2)mingw32-make
 3).\memsim.exe
-
+```
 ---
 
 ### 📁 Project Structure
