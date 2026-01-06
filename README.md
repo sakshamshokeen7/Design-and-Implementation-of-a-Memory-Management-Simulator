@@ -90,7 +90,7 @@ vm_stats
 
 ### Integrated Access
 access <virtual_address>
------
+---
 
 🛠 Build Instructions (Windows / MinGW)
 Requirements
@@ -98,7 +98,13 @@ Requirements
 1) MinGW (g++)
 2) mingw32-make
 
------
+Commands
+
+1)cd file
+2)mingw32-make
+3).\memsim.exe
+
+---
 
 📁 Project Structure
 memory-simulator/
@@ -126,3 +132,40 @@ memory-simulator/
 │
 ├── Makefile
 └── README.md
+
+---
+🎯 Learning Outcomes
+
+Understanding memory allocation strategies
+
+Fragmentation analysis
+
+Cache hierarchy behavior
+
+Virtual memory and paging
+
+OS-level abstraction design in user space
+
+---
+🧠 Design Highlights
+
+Modular separation of allocation strategies
+
+Clear abstraction between memory model and CLI
+
+Efficient coalescing of free blocks
+
+Buddy allocator uses XOR-based buddy computation
+
+Easily extensible for cache and virtual memory modules
+
+---
+⚠️ Assumptions & Limitations
+
+Simulation runs entirely in user space
+
+No real hardware interaction
+
+Cache and virtual memory extensions are conceptual / optional
+
+Focus is on correctness and visualization, not raw performance
