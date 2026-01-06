@@ -65,7 +65,7 @@ The simulator emphasizes **systems-level design**, **algorithmic correctness**, 
 ##  Simulator Commands
 
 ### Memory Allocation
-```text
+
 init memory <size>
 set <firstfit | bestfit | worstfit>
 malloc <size>
@@ -92,7 +92,8 @@ vm_stats
 access <virtual_address>
 ---
 
-🛠 Build Instructions (Windows / MinGW)
+
+### 🛠 Build Instructions (Windows / MinGW)
 Requirements
 
 1) MinGW (g++)
@@ -134,7 +135,7 @@ memory-simulator/
 └── README.md
 
 ---
-###🎯 Learning Outcomes
+### 🎯 Learning Outcomes
 
 Understanding memory allocation strategies
 
@@ -147,7 +148,7 @@ Virtual memory and paging
 OS-level abstraction design in user space
 
 ---
-###🧠 Design Highlights
+### 🧠 Design Highlights
 
 Modular separation of allocation strategies
 
@@ -160,7 +161,7 @@ Buddy allocator uses XOR-based buddy computation
 Easily extensible for cache and virtual memory modules
 
 ---
-###⚠️ Assumptions & Limitations
+### ⚠️ Assumptions & Limitations
 
 Simulation runs entirely in user space
 
