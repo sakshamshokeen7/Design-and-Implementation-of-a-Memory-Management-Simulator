@@ -47,21 +47,21 @@ https://github.com/user-attachments/assets/801664f0-acf4-40d4-9fb3-e0c3a020f99a
 
 ### 3. Multi-Level Cache Simulation
 
--Simulates a two-level CPU cache hierarchy consisting of L1 and L2 caches, integrated with physical memory access.
--Features
--Configurable L1 and L2 cache sizes
--Set-associative cache design
--FIFO replacement policy
--Real-time tracking of:
--Cache hits and misses per level
--Miss propagation from L1 → L2 → main memory
--Total memory access cycles (miss penalty modeling)
--Behavior
--L1 is checked first for every access
--On L1 miss, request is forwarded to L2
--On L2 miss, access is forwarded to main memory
--Blocks are inserted back into upper cache levels following FIFO policy
--This module demonstrates realistic cache behavior and clearly visualizes performance trade-offs in hierarchical memory systems.
+- Simulates a two-level CPU cache hierarchy consisting of L1 and L2 caches, integrated with physical memory access.
+- Features
+- Configurable L1 and L2 cache sizes
+- Set-associative cache design
+- FIFO replacement policy
+- Real-time tracking of:
+- Cache hits and misses per level
+- Miss propagation from L1 → L2 → main memory
+- Total memory access cycles (miss penalty modeling)
+- Behavior
+- L1 is checked first for every access
+- On L1 miss, request is forwarded to L2
+- On L2 miss, access is forwarded to main memory
+- Blocks are inserted back into upper cache levels following FIFO policy
+- This module demonstrates realistic cache behavior and clearly visualizes performance trade-offs in hierarchical memory systems.
 ---
 
 ### 4. Virtual Memory Simulation
