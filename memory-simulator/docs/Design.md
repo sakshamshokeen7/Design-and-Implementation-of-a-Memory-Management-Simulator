@@ -65,10 +65,10 @@ Physical memory is simulated as a contiguous block of memory divided into variab
 ```
 Each memory block contains:
 
-.Block ID
-.Start address
-.Block size
-.Allocation status
+1. Block ID
+2. Start address
+3. Block size
+4. Allocation status
 
 ### Allocation Strategies
 First Fit
@@ -104,10 +104,10 @@ After Coalescing:
 ```
 
 ### Fragmentation Metrics
-.Internal Fragmentation
+1. Internal Fragmentation
 Allocated size > requested size
 
-.External Fragmentation
+2. External Fragmentation
 Free memory exists but not contiguously
 
 ## Buddy Memory Allocation System
@@ -127,10 +127,10 @@ Memory Size = 1024
 ```
 ### Allocation Process
 
-1.Round request to nearest power of two
-2.Search corresponding free list
-3.Recursively split larger blocks if required
-4.Allocate final block
+1. Round request to nearest power of two
+2. Search corresponding free list
+3. Recursively split larger blocks if required
+4. Allocate final block
 
 ### Buddy Address Computation
 ```text
