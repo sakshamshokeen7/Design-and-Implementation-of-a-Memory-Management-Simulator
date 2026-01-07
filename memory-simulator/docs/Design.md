@@ -240,6 +240,17 @@ Check L1
         ├─ Hit → Update L1
         └─ Miss → Fetch from Memory → Update L2 & L1
 ```
+### Cache Line Structure
+```text
+Cache Line
++--------+--------+-----------+
+| Tag    | Data   | Metadata  |
++--------+--------+-----------+
+```
+### Replacement Policy
+1. FIFO (First-In-First-Out)
+2. Oldest cache line evicted on overflow
+
 ### Miss Propagation & Timing
 - Tracks:
 L1 misses forwarded to L2
@@ -255,34 +266,6 @@ Total cycles reported in cache statistics
 - Miss penalty propagation
 - Total memory access cycles
 
-### Cache Line Structure
-```text
-Cache Line
-+--------+--------+-----------+
-| Tag    | Data   | Metadata  |
-+--------+--------+-----------+
-```
-### Replacement Policy
-1. FIFO (First-In-First-Out)
-2. Oldest cache line evicted on overflow
-
-### Cache Access Flow
-```text
-Memory Access
-   |
-   v
-Check L1
-   |
-   |-- Hit → Return
-   |
-   v
-Check L2
-   |
-   |-- Hit → Update L1
-   |
-   v
-Fetch from Main Memory
-```
 ## Integrated Memory Access Pipeline
 ```text
 Virtual Address
