@@ -17,8 +17,6 @@ cache_access
 cache_access
 30
 cache_access
-40
-cache_access
 10
 
 # Display cache statistics

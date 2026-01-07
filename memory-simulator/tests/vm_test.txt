@@ -12,15 +12,11 @@ vm_init
 3
 64
 
-access
+vm_access
 10
-access
+vm_access
 70
-access
+vm_access
 130
-access
-10
-access
-200
 
 vm_stats

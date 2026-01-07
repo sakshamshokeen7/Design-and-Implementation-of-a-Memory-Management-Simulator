@@ -208,9 +208,9 @@ Load New Page
     v
 Update Page Table
 ```
-## Cache Hierarchy Design
-
-### Cache Levels
+## Multi-Level Cache Simulation
+- The simulator implements a two-level CPU cache hierarchy (L1 and L2) between the CPU and main memory. Both caches are set-associative and use a FIFO (First-In-First-Out) replacement policy.
+### Cache Hierarchy
 ```text
 CPU
  |
@@ -223,6 +223,38 @@ CPU
  v
 Main Memory
 ```        
+- All accesses start at L1
+- Misses propagate L1 → L2 → Memory
+- Data fetched from lower levels is inserted back into upper caches
+
+### Organization & Policy
+- Set-associative mapping
+- Configurable cache sizes and associativity
+- FIFO eviction per set (oldest line removed on overflow)
+
+### Access Flow
+```text
+Check L1
+ ├─ Hit → Return
+ └─ Miss → Check L2
+        ├─ Hit → Update L1
+        └─ Miss → Fetch from Memory → Update L2 & L1
+```
+### Miss Propagation & Timing
+- Tracks:
+L1 misses forwarded to L2
+L2 misses forwarded to main memory
+- Fixed timing model:
+L1 hit: 1 cycle
+L2 hit: 10 cycles
+Memory access: 100 cycles
+Total cycles reported in cache statistics
+
+### Statistic Tracked
+- Hits and misses per cache level
+- Miss penalty propagation
+- Total memory access cycles
+
 ### Cache Line Structure
 ```text
 Cache Line
